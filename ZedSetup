@@ -1,0 +1,9 @@
+mount -t nfs -o nolock 192.168.1.51:/home/jds/workspace /mnt
+cp /mnt/can-app/ip /bin/
+cd /mnt/can-ps7-xilinx
+rmmod can-xilinx-ps7
+insmod can-xilinx-ps7.ko
+ip link set can0 up type can bitrate 500000
+ip -details -statistics link show can0
+../can-app/Debug/can-app
+
